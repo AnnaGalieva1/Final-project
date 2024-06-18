@@ -10,7 +10,7 @@ class BasePage:
     def open(self):
         self.browser.get(self.url)
 
-    # Проверка, что элемент присутствует на странице
+    # Перехват исключения
     def is_element_present(self, how, what):
         try:
             self.browser.find_element(how, what)
