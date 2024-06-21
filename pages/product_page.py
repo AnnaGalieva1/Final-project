@@ -37,3 +37,13 @@ class ProductPage(BasePage):
         assert (
             product_price == basket_price
         ), "the product price differs from the basket price"
+
+    def should_be_not_success_message_is_not_element_present(self):
+        assert self.is_not_element_present(
+            *ProductPageLocators.ADDED_TO_BASKET
+        ), "Success message is presented, but should not be"
+
+    def should_be_not_success_message_is_element_disappeared(self):
+        assert self.is_disappeared(
+            *ProductPageLocators.ADDED_TO_BASKET
+        ), "Success message is presented, but should not be"
