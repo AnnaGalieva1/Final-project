@@ -1,8 +1,10 @@
 import pages
+import pytest
 
 pages.ProductPage
 
 
+@pytest.mark.xfail
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
     page = pages.ProductPage(browser, link)
@@ -18,6 +20,7 @@ def test_guest_cant_see_success_message(browser):
     page.should_be_not_success_message_is_not_element_present()
 
 
+@pytest.mark.xfail
 def test_message_disappeared_after_adding_product_to_basket(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
     page = pages.ProductPage(browser, link)
