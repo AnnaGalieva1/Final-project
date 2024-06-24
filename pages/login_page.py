@@ -20,3 +20,15 @@ class LoginPage(MainPage):
         assert self.browser.find_element(
             *LoginPageLocators.REGISTER_FORM
         ), "Register form not found"
+
+    def register_new_user(self, email, password):
+        email1 = self.browser.find_element(*LoginPageLocators.EMAIL_REGISTER)
+        email1.send_keys(email)
+        password1 = self.browser.find_element(*LoginPageLocators.PASSWORD_REGISTER)
+        password1.send_keys(password)
+        confirm_pass = self.browser.find_element(
+            *LoginPageLocators.CONFIRM_PASSWORD_REG
+        )
+        confirm_pass.send_keys(password)
+        button = self.browser.find_element(*LoginPageLocators.BUTTON_REG)
+        button.click()
