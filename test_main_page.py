@@ -3,7 +3,6 @@
 # from pages.login_page import LoginPage
 
 # Второй вариант импорта с объявлением списка классов в __init__
-import pytest
 import pages
 
 pages.MainPage

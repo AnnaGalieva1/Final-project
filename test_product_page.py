@@ -27,6 +27,7 @@ pages.LoginPageLocators
         "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9",
     ],
 )
+@pytest.mark.need_review
 def test_guest_can_add_product_to_basket(browser, link):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
 
@@ -47,6 +48,7 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.should_be_login_link()
 
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = pages.BasePage(browser, link)
@@ -54,6 +56,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     page.go_to_login_page()
 
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/"
     page = pages.BasketPage(browser, link)
@@ -63,7 +66,6 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page.should_be_message_basket_is_empty()
 
 
-@pytest.mark.new
 class TestUserAddToBasketFromProductPage:
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
@@ -72,7 +74,7 @@ class TestUserAddToBasketFromProductPage:
         r = RandomWords()
         link = "http://selenium1py.pythonanywhere.com/en-gb/accounts/login/"
         login_page = pages.LoginPage(browser, link)
-        email = self.email = r.get_random_word() + "@fakemail.org"
+        email = self.email = r.get_random_word() + "@mail.com"
         password = self.password = r.get_random_word() + "123"
         login_page.open()
         login_page.register_new_user(email, password)
@@ -84,6 +86,7 @@ class TestUserAddToBasketFromProductPage:
         page.open()
         page.should_be_not_success_message_is_not_element_present()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
 
