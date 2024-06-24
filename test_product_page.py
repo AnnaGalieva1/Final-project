@@ -3,6 +3,7 @@ import pytest
 
 pages.ProductPage
 pages.BasePage
+pages.BasketPage
 
 
 @pytest.mark.parametrize(
@@ -48,3 +49,12 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     page = pages.BasePage(browser, link)
     page.open()
     page.go_to_login_page()
+
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/"
+    page = pages.BasketPage(browser, link)
+    page.open()
+    page.go_to_basket()
+    page.should_be_no_items_in_basket()
+    page.should_be_message_basket_is_empty()

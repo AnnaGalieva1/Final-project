@@ -8,14 +8,10 @@ from .locators import BasePageLocators
 
 
 class BasePage:
-    def __init__(
-        self,
-        browser,
-        url,
-    ):
+    def __init__(self, browser, url, timeout=5):
         self.browser = browser
         self.url = url
-        # self.browser.implicitly_wait(timeout)
+        self.browser.implicitly_wait(timeout)
 
     def open(self):
         self.browser.get(self.url)
@@ -28,6 +24,10 @@ class BasePage:
         assert self.is_element_present(
             *BasePageLocators.LOGIN_LINK
         ), "Login link is not presented"
+
+    def go_to_basket(self):
+        button = self.browser.find_element(*BasePageLocators.BUTTON_BASKET)
+        button.click()
 
     # Перехват исключения
     def is_element_present(self, how, what):
